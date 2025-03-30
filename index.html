@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOGO Offer</title>
+    <style>
+        .line {
+            text-align: center;
+            color: #ff4081;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .line::before,
+        .line::after {
+            content: "";
+            display: block;
+            width: 23%; /* Adjust the width of the lines as needed */
+            height: 2px; /* Thickness of the lines */
+            background-color: #ddd; /* Color of the lines */
+            position: absolute;
+            top: 50%; /* Positioning for the lines relative to the text */
+            transform: translateY(-50%);
+        }
+
+        .line::before {
+            left: 3px; /* Line on the left */
+        }
+
+        .line::after {
+            right: 3px; /* Line on the right */
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #e91e63;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .offer-radio {
+            margin-bottom: 15px;
+        }
+        .offer-radio label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .offer-radio input[type="radio"] {
+            margin-right: 10px;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+        .offer-radio input[type="radio"]:checked {
+            background-color: #e91e63;
+            border-color: #e91e63;
+        }
+        .offer-radio input[type="radio"]:checked::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .offer-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            width: 100%;
+        }
+        .offer-details span {
+            font-weight: bold;
+        }
+        .discount {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 12px;
+            padding-left: 95px;
+        }
+        .most-popular {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+        }
+        .offer-box {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .offer-box.popular {
+            border-color: #e91e63;
+        }
+        .size-color-select {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-top: 15px;
+        }
+        .select-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .select-group select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 120px;
+        }
+        .free-delivery {
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+        .total {
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .add-to-cart {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+    <script>
+let boxes = ["box1", "box2", "box3"]
+function showbox(id) {
+boxes.flatMap((box) => document.getElementById(box+'_cs').style.display = 'none');
+document.getElementById(id+'_cs').style.display = 'flex';
+}
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="line">YAY! It's BOGO</h2>
+        <div class="offer-radio">
+            <div class="offer-box" id="box1" onclick="showbox(id)">
+                <label for="unit-1">
+                    <input type="radio" name="offer" id="unit-1">
+                    <div class="offer-details">
+                        <span>1 Unit <span class="discount">10% Off</span></span>
+                        <div>
+                            <span>$10.00 USD</span>
+
+                        </div>
+                    </div>
+                </label>
+                <div>
+                        <label style="padding-left: 30px">Standard Price <span class="original-price">$24.00 USD</span></label>
+                    </div>
+                <div class="size-color-select" id = "box1_cs">
+                    <label style="font-size: 12px; padding-top: 2em">#1</label>
+                    <div class="select-group">
+                        <label for="size-1" style="font-size: 14px; padding-bottom: 0.6em">Size</label>
+                        <select id="size-1">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="color-1" style="font-size: 14px; padding-bottom: 0.6em">Colour</label>
+                        <select id="color-1">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                        </select>
+                    </div>
+                    <label style="font-size: 12px;" >#2</label>
+                    <div class="select-group">
+                        <select id="size-2">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <select id="color-2">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offer-radio">
+            <div class="offer-box popular" id="box2" onclick="showbox(id)">
+                <span class="most-popular">MOST POPULAR</span>
+                <label for="unit-2">
+                    <input type="radio" name="offer" id="unit-2" checked>
+                    <div class="offer-details">
+                        <span>2 Unit <span class="discount">20% Off</span></span>
+                        <div>
+                            <span>$18.00 USD</span>
+                        </div>
+                    </div>
+                </label>
+                <div>
+                        <label style="padding-left: 135px"><span class="original-price">$24.00 USD</span></label>
+                    </div>
+                <div class="size-color-select" style="display: flex" id = "box2_cs">
+                    <label style="font-size: 12px; padding-top: 2em">#1</label>
+                    <div class="select-group">
+                        <label for="size-3" style="font-size: 14px; padding-bottom: 0.6em">Size</label>
+                        <select id="size-3">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="color-3" style="font-size: 14px; padding-bottom: 0.6em">Colour</label>
+                        <select id="color-3">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                        </select>
+                    </div>
+                    <label style="font-size: 12px;" >#2</label>
+                    <div class="select-group">
+                        <select id="size-4">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <select id="color-4">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offer-radio">
+            <div class="offer-box" id="box3"  onclick="showbox(id)">
+                <label for="unit-3">
+                    <input type="radio" name="offer" id="unit-3">
+                    <div class="offer-details">
+                        <span>3 Unit <span class="discount">30% Off</span></span>
+                        <div>
+                            <span>$24.00 USD</span>
+                        </div>
+                    </div>
+                </label>
+                <div>
+                        <label style="padding-left: 135px"><span class="original-price">$24.00 USD</span></label>
+                    </div>
+                <div class="size-color-select" id = "box3_cs">
+                    <label style="font-size: 12px; padding-top: 2em">#1</label>
+                    <div class="select-group">
+                        <label for="size-5" style="font-size: 14px; padding-bottom: 0.6em">Size</label>
+                        <select id="size-5">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="color-5" style="font-size: 14px; padding-bottom: 0.6em">Colour</label>
+                        <select id="color-5">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                        </select>
+                    </div>
+                    <label style="font-size: 12px;" >#2</label>
+                    <div class="select-group">
+                        <select id="size-6">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <select id="color-6">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="free-delivery">Free Delivery</div>
+        <div class="total">Total : $18.00 USD</div>
+        <button class="add-to-cart">+ Add to Cart</button>
+    </div>
+</body>
+</html>
